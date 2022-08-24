@@ -538,7 +538,7 @@ init_uart()
 	termios.c_cflag |= CS8;
 #endif
 
-	termios.c_cflag |= CRTSCTS;
+	//termios.c_cflag |= CRTSCTS;
 	tcsetattr(uart_fd, TCSANOW, &termios);
 	tcflush(uart_fd, TCIOFLUSH);
 	tcsetattr(uart_fd, TCSANOW, &termios);
@@ -723,7 +723,7 @@ void
 proc_enable_hci()
 {
 	int i = N_HCI;
-	int proto = HCI_UART_H4;
+	int proto = HCI_UART_3WIRE;
 	if (ioctl(uart_fd, TIOCSETD, &i) < 0) {
 		fprintf(stderr, "Can't set line discipline\n");
 		return;
